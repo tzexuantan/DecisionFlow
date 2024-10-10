@@ -1,0 +1,50 @@
+{
+    "jobRoles": {
+      "Software Engineer": [
+        "Programming languages (e.g., Python, Java, C++)",
+        "Data structures and algorithms",
+        "Version control (Git)",
+        "Software development methodologies (Agile, Scrum)",
+        "Problem-solving skills",
+        "Testing and debugging",
+        "APIs and web services"
+      ],
+      "Data Scientist": [
+        "Statistical analysis",
+        "Programming languages (e.g., Python, R)",
+        "Machine learning techniques",
+        "Data visualization tools (e.g., Matplotlib, Tableau)",
+        "Data wrangling and cleaning",
+        "Big data technologies (e.g., Hadoop, Spark)",
+        "SQL and database management"
+      ],
+      "DevOps Engineer": [
+        "Programming/scripting languages (e.g., Python, Bash)",
+        "Version control systems (Git)",
+        "Continuous Integration/Continuous Deployment (CI/CD)",
+        "Containerization (Docker) and orchestration (Kubernetes)",
+        "Infrastructure as Code (IaC) tools (e.g., Terraform, Ansible)",
+        "Cloud services (e.g., AWS, Azure, Google Cloud)",
+        "Monitoring and logging tools (e.g., Prometheus, ELK Stack)"
+      ],
+      "UX/UI Designer": [
+        "User research and usability testing",
+        "Wireframing and prototyping tools (e.g., Sketch, Figma)",
+        "Visual design principles",
+        "Interaction design",
+        "Information architecture",
+        "Responsive and mobile design",
+        "Collaboration with developers and stakeholders"
+      ],
+      "Cybersecurity Analyst": [
+        "Network security concepts",
+        "Threat analysis and vulnerability assessment",
+        "Incident response and management",
+        "Security Information and Event Management (SIEM) tools",
+        "Regulatory compliance knowledge (e.g., GDPR, HIPAA)",
+        "Penetration testing and ethical hacking",
+        "Security policies and procedures development"
+      ]
+    }
+  }
+  
