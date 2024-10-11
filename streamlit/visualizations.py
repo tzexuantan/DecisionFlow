@@ -104,7 +104,7 @@ def plot_histogram(data,col,chosen):
 
 #Function to display visualzations tab
 def visualizations():
-    #Initialize dataset
+
     indeed_df = initialize_indeed_dataset()
 
     # Bar Graph
@@ -158,37 +158,37 @@ def visualizations():
             else:
                 st.warning("Please select at least one skill to visualize.")
 
-def visualisations():
-    #Initialize Dataset
-    ITJobs_df = initialize_ITJobs_dataset()
 
-    category_column = 'job_title' 
-    sizes = ITJobs_df[category_column].value_counts()  # Counts the occurrences of each category
-    job = sizes.index  # The unique category 
-    sizes = sizes.values  # The corresponding sizes
+    #Initialize Dataset
+    entryleveljobs_df = initialize_ITJobs_dataset()
+
+    category_column1 = 'job_title' 
+    sizes1 = entryleveljobs_df[category_column1].value_counts()  # Counts the occurrences of each category
+    job1 = sizes1.index  # The unique category 
+    sizes1 = sizes1.values  # The corresponding sizes
 
     # Create the pie chart
-    fig = px.pie(values=sizes, names=job, title="IT Entry Level Jobs")
+    fig = px.pie(values1=sizes1, names1=job1, title1="IT Entry Level Jobs")
 
     # Display pie chart 
     st.plotly_chart(fig)
 
-def visualisations():
-    #Initialize Dataset
-    itjob_df = initialize_itjob_headerfinal_dataset()
 
-    category_column = 'education_level' 
-    sizes = itjob_df[category_column].value_counts()  # Counts the occurrences of each category
-    labels = sizes.index  # The unique category labels
-    sizes = sizes.values  # The corresponding sizes
+    #Initialize Dataset
+    education_df = initialize_itjob_headerfinal_dataset()
+
+    category_column2 = 'education_level' 
+    sizes2 = education_df[category_column2].value_counts()  # Counts the occurrences of each category
+    labels2 = sizes2.index  # The unique category labels
+    sizes2 = sizes2.values  # The corresponding sizes
 
     # Create the pie chart
-    fig = px.pie(values=sizes, names=labels, title="Education for IT Jobs")
+    fig = px.pie(values2=sizes2, names2=labels2, title="Education for IT Jobs")
 
     # Display pie chart 
     st.plotly_chart(fig)
 
-def visualisations():
+
     #Initialize Dataset
     itjob_companies_df = initialize_companies_dataset()
 
@@ -215,7 +215,6 @@ def visualisations():
                 default=[]  # Default to show none
             )
 
-def visualisations():
     #Initialize Dataset
     itjob_salary_df = initialize_salary_dataset
     
@@ -246,7 +245,7 @@ def visualisations():
     # Further filter the DataFrame based on selected job titles
     filtered_df = filtered_df[filtered_df[column1].isin(selected_job_titles)]
 
-def visualisation():
+
     itjob_skillset_df = initialize_skillset_dataset
 
     st.title("Most Commonly Required IT Competencies in the Industry")
@@ -262,7 +261,7 @@ def visualisation():
     # Further filter the DataFrame based on selected sub-skills
     filtered_df = itjob_skillset_df[itjob_skillset_df[column].isin(selected_sub_skills)]
 
-def visualisation():
+
     itjob_Certificate_df = initialize_certificate_dataset
     
     st.title("Distribution of Certificates in the Data File")
