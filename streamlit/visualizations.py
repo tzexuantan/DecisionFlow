@@ -38,14 +38,6 @@ def initialize_itjob_headerfinal_dataset():
     itjob_headerfinal_df = pd.read_excel(file_path)
     return itjob_headerfinal_df
 
-def initialize_companies_dataset():
-    # Get the directory of the current script
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    # File path to the dataset
-    file_path = os.path.join(current_dir, "../dataset/Final.xlsx")
-    itjob_companies_df = pd.read_excel(file_path)
-    return itjob_companies_df
-
 def initialize_salary_dataset():
     # Get the directory of the current script
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -84,7 +76,7 @@ def plot_pie_chart(sizes, labels, title):
     plt.axis('equal')
     plt.plot()
 
-def plot_horizontal_graph(data, col1, col2, title):
+def plot_horizontal_graph(data, col1, col2, title, x_col, y_row):
     plt.figure(figsize=(10, 6))
     plt.barh(data[col1], data[col2], label=col2)
     plt.xlabel('Salary')
@@ -94,13 +86,23 @@ def plot_horizontal_graph(data, col1, col2, title):
     plt.savefig('plot.png')
     st.pyplot(plt)
 
-def plot_histogram(data,col,chosen):
+def plot_histogram(data,col,chosen, title, x_col, y_row):
     plt.figure(figsize=(10, 6))
     plt.hist(data[col], bins=len(chosen), edgecolor='k', alpha=0.7)
     plt.xlabel('Sub-skill')
     plt.ylabel('Frequency')
-    plt.title('Frequency of Each Sub-skill')
+    plt.title(title=title)
     st.pyplot(plt)
+
+def plot_line_chart(data, title, x_col, y_row):
+        plt.figure(figsize=(10, 5))
+        plt.plot(data.index, data.values, color='b', linestyle='-', linewidth=2, marker='o')
+        plt.title(title=title)
+        plt.xlabel('Certificate')
+        plt.ylabel('No. of people with the certificate')
+        plt.xticks(rotation=90)  # Rotate x-axis labels for better readability
+        plt.grid(True)
+        st.pyplot(plt)
 
 #Function to display visualzations tab
 def visualizations():
@@ -190,28 +192,28 @@ def visualizations():
 
 
     #Initialize Dataset
-    itjob_companies_df = initialize_companies_dataset()
+    indeed_df = initialize_indeed_dataset()
 
     # Bar Graph
     st.title("Companies that are hiring the IT roles")
-    column_to_plot = "Company/Candidate Name"  # Replace this with your specific column name
+    column_to_plot3 = "Company/Candidate Name"  # Replace this with your specific column name
 
-    if itjob_companies_df[column_to_plot].dtype == 'object':
+    if indeed_df[column_to_plot3].dtype == 'object':
         # Count occurrences of each category
-        category_counts = itjob_companies_df[column_to_plot].value_counts()
+        category_counts3 = indeed_df[column_to_plot3].value_counts()
 
         # Display the top 3 companies hiring the most IT roles for the entire dataset
-        top3_companies = category_counts.nlargest(3)
+        top3_companies = category_counts3.nlargest(3)
         st.write("**Top 3 companies that are hiring the most IT roles:**")
         for company, count in top3_companies.items():
             st.write(f"{company}: {count} roles")
 
         # Check if category_counts is not empty
-        if not category_counts.empty:
+        if not category_counts3.empty:
             # Multi-select to choose specific data
             selected_skills = st.multiselect(
                 'Select companies to visualize',
-                options=category_counts.index.tolist(),  # Provide the list of options
+                options3=category_counts3.index.tolist(),  # Provide the list of options
                 default=[]  # Default to show none
             )
 
@@ -236,14 +238,14 @@ def visualizations():
     max_value = st.number_input('Max Salary', min_value=min_salary, max_value=max_salary, value=max_salary)
 
     # Filter the DataFrame based on the salary range
-    filtered_df = itjob_salary_df[(itjob_salary_df[column2] >= min_value) & (itjob_salary_df[column2] <= max_value)]
+    filtered_df4 = itjob_salary_df[(itjob_salary_df[column2] >= min_value) & (itjob_salary_df[column2] <= max_value)]
 
     # Update job titles based on the filtered DataFrame
-    job_titles = filtered_df[column1].unique()
+    job_titles = filtered_df4[column1].unique()
     selected_job_titles = st.multiselect('Select Job Titles', job_titles, default=[])
 
     # Further filter the DataFrame based on selected job titles
-    filtered_df = filtered_df[filtered_df[column1].isin(selected_job_titles)]
+    filtered_df4 = filtered_df4[filtered_df4[column1].isin(selected_job_titles)]
 
 
     itjob_skillset_df = initialize_skillset_dataset
@@ -255,11 +257,11 @@ def visualizations():
     itjob_skillset_df[column].fillna('Unknown', inplace=True)
 
     # Update sub-skills based on the DataFrame
-    sub_skills = itjob_skillset_df[column].unique()
+    sub_skills = filtered_df5[column].unique()
     selected_sub_skills = st.multiselect('Select Sub-skills', sub_skills, default=[])
 
     # Further filter the DataFrame based on selected sub-skills
-    filtered_df = itjob_skillset_df[itjob_skillset_df[column].isin(selected_sub_skills)]
+    filtered_df5 = filtered_df5[filtered_df5[column].isin(selected_sub_skills)]
 
 
     itjob_Certificate_df = initialize_certificate_dataset
@@ -278,7 +280,7 @@ def visualizations():
         # Multi-select to filter certificates
         selected_certificates = st.multiselect(
             'Select certificates to visualize',
-            options=certificate_counts.index.tolist(),  # Provide the list of options
+            options6=certificate_counts.index.tolist(),  # Provide the list of options
             default=[]  # Default to show none
         )
 
