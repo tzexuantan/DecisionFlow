@@ -76,28 +76,28 @@ def plot_pie_chart(sizes, labels, title):
     plt.axis('equal')
     plt.plot()
 
-def plot_horizontal_graph(data, col1, col2, title, x_col, y_row):
+def plot_horizontal_graph(data, col1, col2, title):
     plt.figure(figsize=(10, 6))
     plt.barh(data[col1], data[col2], label=col2)
     plt.xlabel('Salary')
     plt.ylabel('Job Title')
-    plt.title(title=title)
+    plt.title(title)
     plt.legend()
     plt.savefig('plot.png')
     st.pyplot(plt)
 
-def plot_histogram(data,col,chosen, title, x_col, y_row):
+def plot_histogram(data,col,chosen, title):
     plt.figure(figsize=(10, 6))
     plt.hist(data[col], bins=len(chosen), edgecolor='k', alpha=0.7)
     plt.xlabel('Sub-skill')
     plt.ylabel('Frequency')
-    plt.title(title=title)
+    plt.title(title)
     st.pyplot(plt)
 
-def plot_line_chart(data, title, x_col, y_row):
+def plot_line_chart(data, title):
         plt.figure(figsize=(10, 5))
         plt.plot(data.index, data.values, color='b', linestyle='-', linewidth=2, marker='o')
-        plt.title(title=title)
+        plt.title(title)
         plt.xlabel('Certificate')
         plt.ylabel('No. of people with the certificate')
         plt.xticks(rotation=90)  # Rotate x-axis labels for better readability
@@ -193,7 +193,7 @@ def visualizations():
 
     #Initialize Dataset
     indeed_df = initialize_indeed_dataset()
-
+    
     # Bar Graph
     st.title("Companies that are hiring the IT roles")
     column_to_plot3 = "Company/Candidate Name"  # Replace this with your specific column name
